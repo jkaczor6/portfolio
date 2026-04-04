@@ -56,6 +56,26 @@
             color: #ff6b6b;
             border-bottom: 2px solid #e74c3c;
         }
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .lang-btn.active {
+            color: #e74c3c;
+        }
+        .lang-btn:hover {
+            color: #ff6b6b;
+        }
         .section {
             min-height: 60vh;
             display: flex;
@@ -313,17 +333,20 @@
         <div class="nav-container">
             <div class="logo">J.K.</div>
             <ul>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects" data-key="nav.projects">Projects</a></li>
+                <li><a href="#about" data-key="nav.about">About</a></li>
+                <li><a href="#contact" data-key="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-toggle">
+                <button id="lang-pl" class="lang-btn">PL</button> | <button id="lang-en" class="lang-btn">ENG</button>
+            </div>
         </div>
     </nav>
     <section id="hero" class="section">
         <div class="hero-container">
             <div class="hero-text">
-                <h1>Jakub Kaczor</h1>
-                <p>Game Developer</p>
+                <h1 data-key="hero.name">Jakub Kaczor</h1>
+                <p data-key="hero.role">Game Developer</p>
             </div>
             <div class="hero-image">
                 <img src="photo.jpg" alt="Jakub Kaczor">
@@ -332,7 +355,7 @@
     </section>
     <div class="separator"></div>
     <section id="projects" class="section">
-        <h2>Projects</h2>
+        <h2 data-key="projects.heading">Projects</h2>
         <div class="projects-grid" id="projects-grid">
             <!-- Projects will be populated by JS -->
         </div>
@@ -341,10 +364,10 @@
     <section id="about" class="section">
         <div class="about-container">
             <div class="bio">
-                <p>I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.</p>
+                <p data-key="about.bio">I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.</p>
             </div>
             <div class="skills">
-                <h3>Skills</h3>
+                <h3 data-key="about.skills.heading">Skills</h3>
                 <ul>
                     <li>Unreal Engine 5 <div class="progress"><div class="bar" style="width: 80%"></div></div></li>
                     <li>C++ <div class="progress"><div class="bar" style="width: 75%"></div></div></li>
@@ -358,65 +381,185 @@
     </section>
     <div class="separator"></div>
     <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p><a href="mailto:j.kaczor06@gmail.com">j.kaczor06@gmail.com</a></p>
-        <a href="JakubKaczor_CV.pdf" download class="cv-button">Download CV</a>
+        <h2 data-key="contact.heading">Contact</h2>
+        <p><a href="mailto:j.kaczor06@gmail.com"><span data-key="contact.email">j.kaczor06@gmail.com</span></a></p>
+        <a href="JakubKaczor_CV.pdf" download class="cv-button" data-key="contact.cv">Download CV</a>
         <div class="social">
             <a href="https://github.com/jkaczor6" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
-                GitHub
+                <span data-key="contact.social.github">GitHub</span>
             </a>
             <a href="https://twitter.com/jkaczor6" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
-                Twitter
+                <span data-key="contact.social.twitter">Twitter</span>
             </a>
             <a href="https://linkedin.com/in/jakubkaczor6" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
-                LinkedIn
+                <span data-key="contact.social.linkedin">LinkedIn</span>
             </a>
             <a href="https://jkaczor6.itch.io" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 6h8v2H8V6zm0 4h8v2H8v-2zm0 4h4v2H8v-2zm6 0h2v2h-2v-2zm-6-8h2V4H8v2zm4 0h2V4h-2v2zM6 2h12v20H6V2zm1 1v18h10V3H7z"/>
                 </svg>
-                itch.io
+                <span data-key="contact.social.itch">itch.io</span>
             </a>
         </div>
     </section>
     <script>
-        const projects = [
-            {
-                title: "Platform Farmer",
-                description: "Cozy 2D platformer with farming elements.",
-                tags: ["UE5", "C++", "Platformer", "Farming"],
-                image: "platformfarmer.png",
-                url: "https://github.com/jkaczor6/PlatformFarmer"
+        const translations = {
+            en: {
+                nav: {
+                    projects: "Projects",
+                    about: "About",
+                    contact: "Contact"
+                },
+                hero: {
+                    name: "Jakub Kaczor",
+                    role: "Game Developer"
+                },
+                projects: {
+                    heading: "Projects",
+                    items: [
+                        {
+                            title: "Platform Farmer",
+                            description: "Cozy 2D platformer with farming elements.",
+                            tags: ["UE5", "C++", "Platformer", "Farming"],
+                            image: "platformfarmer.png",
+                            url: "https://github.com/jkaczor6/PlatformFarmer"
+                        },
+                        {
+                            title: "Delivery Simulator",
+                            description: "3D delivery simulation game.",
+                            tags: ["UE5", "C++", "Simulator", "Open World"],
+                            image: "deliverysimulator.png",
+                            url: "https://github.com/jkaczor6/DeliverySimulator"
+                        },
+                        {
+                            title: "Somethings Wrong",
+                            description: "3D inspection game with a mysterious atmosphere.",
+                            tags: ["UE5", "C++", "Inspection"],
+                            image: "https://placehold.co/800x450/cc0000/ffffff?text=Somethings+Wrong",
+                            url: "https://github.com/jkaczor6/SomethingsWrong",
+                            badge: "Work In Progress"
+                        }
+                    ]
+                },
+                about: {
+                    heading: "About Me",
+                    bio: "I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.",
+                    skills: {
+                        heading: "Skills",
+                        list: {
+                            "Unreal Engine 5": 80,
+                            "C++": 75,
+                            "Blueprints": 70,
+                            "Game Design": 75,
+                            "3D Modeling": 50,
+                            "Level Design": 75
+                        }
+                    }
+                },
+                contact: {
+                    heading: "Contact",
+                    email: "j.kaczor06@gmail.com",
+                    cv: "Download CV",
+                    social: {
+                        github: "GitHub",
+                        twitter: "Twitter",
+                        linkedin: "LinkedIn",
+                        itch: "itch.io"
+                    }
+                }
             },
-            {
-                title: "Delivery Simulator",
-                description: "3D delivery simulation game.",
-                tags: ["UE5", "C++", "Simulator", "Open World"],
-                image: "deliverysimulator.png",
-                url: "https://github.com/jkaczor6/DeliverySimulator"
-            },
-            {
-                title: "Somethings Wrong",
-                description: "3D inspection game with a mysterious atmosphere.",
-                tags: ["UE5", "C++", "Inspection"],
-                image: "https://placehold.co/800x450/cc0000/ffffff?text=Somethings+Wrong",
-                url: "https://github.com/jkaczor6/SomethingsWrong",
-                badge: "Work In Progress"
+            pl: {
+                nav: {
+                    projects: "Projekty",
+                    about: "O Mnie",
+                    contact: "Kontakt"
+                },
+                hero: {
+                    name: "Jakub Kaczor",
+                    role: "Game Developer"
+                },
+                projects: {
+                    heading: "Projekty",
+                    items: [
+                        {
+                            title: "Platform Farmer",
+                            description: "Przytulna platformówka 2D z elementami rolnictwa.",
+                            tags: ["UE5", "C++", "Platformer", "Rolnictwo"],
+                            image: "platformfarmer.png",
+                            url: "https://github.com/jkaczor6/PlatformFarmer"
+                        },
+                        {
+                            title: "Delivery Simulator",
+                            description: "Symulator dostaw 3D.",
+                            tags: ["UE5", "C++", "Symulator", "Świat Otwarty"],
+                            image: "deliverysimulator.png",
+                            url: "https://github.com/jkaczor6/DeliverySimulator"
+                        },
+                        {
+                            title: "Somethings Wrong",
+                            description: "Gra inspekcyjna 3D z tajemniczą atmosferą.",
+                            tags: ["UE5", "C++", "Inspekcja"],
+                            image: "https://placehold.co/800x450/cc0000/ffffff?text=Somethings+Wrong",
+                            url: "https://github.com/jkaczor6/SomethingsWrong",
+                            badge: "W Trakcie Pracy"
+                        }
+                    ]
+                },
+                about: {
+                    heading: "O Mnie",
+                    bio: "Tworzę immersyjne doświadczenia gamingowe używając Unreal Engine 5 (C++/Blueprint). Ciągle rozwijam swoje umiejętności poprzez projekty osobiste, zadania szkolne i samodzielną naukę. Napędza mnie zarówno strona techniczna jak i kreatywna rozwoju gier — od architektury solidnych systemów gry do projektowania angażujących mechanik rozgrywki. Aktywnie uczestniczę w kursach online i śledzę najnowsze trendy branżowe. Moja pasja leży w tworzeniu przekonujących światów gier i prototypowaniu różnorodnych gatunków i stylów wizualnych. Jako że kończę szkołę średnią, jestem chętny do rozwoju jako deweloper i przyczynienia się do profesjonalnych projektów rozwoju gier, które przesuwają granice kreatywności.",
+                    skills: {
+                        heading: "Umiejętności",
+                        list: {
+                            "Unreal Engine 5": 80,
+                            "C++": 75,
+                            "Blueprints": 70,
+                            "Projektowanie Gier": 75,
+                            "Modelowanie 3D": 50,
+                            "Projektowanie Poziomów": 75
+                        }
+                    }
+                },
+                contact: {
+                    heading: "Kontakt",
+                    email: "j.kaczor06@gmail.com",
+                    cv: "Pobierz CV",
+                    social: {
+                        github: "GitHub",
+                        twitter: "Twitter",
+                        linkedin: "LinkedIn",
+                        itch: "itch.io"
+                    }
+                }
             }
-        ];
+        };
 
-        document.addEventListener('DOMContentLoaded', () => {
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function updateTexts() {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                const keys = key.split('.');
+                let value = translations[currentLang];
+                for (let k of keys) {
+                    value = value[k];
+                }
+                el.innerText = value;
+            });
+
+            // Update projects
             const projectsGrid = document.getElementById('projects-grid');
-            projects.forEach(project => {
+            projectsGrid.innerHTML = '';
+            translations[currentLang].projects.items.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 card.innerHTML = `
@@ -429,6 +572,35 @@
                 `;
                 card.addEventListener('click', () => window.open(project.url, '_blank'));
                 projectsGrid.appendChild(card);
+            });
+
+            // Update skills
+            const skillsUl = document.querySelector('.skills ul');
+            skillsUl.innerHTML = '';
+            Object.entries(translations[currentLang].about.skills.list).forEach(([skill, percent]) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${skill} <div class="progress"><div class="bar" style="width: ${percent}%"></div></div>`;
+                skillsUl.appendChild(li);
+            });
+
+            // Update button text
+            document.getElementById('lang-pl').classList.toggle('active', currentLang === 'pl');
+            document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTexts();
+
+            document.getElementById('lang-pl').addEventListener('click', () => {
+                currentLang = 'pl';
+                localStorage.setItem('lang', currentLang);
+                updateTexts();
+            });
+
+            document.getElementById('lang-en').addEventListener('click', () => {
+                currentLang = 'en';
+                localStorage.setItem('lang', currentLang);
+                updateTexts();
             });
 
             const observer = new IntersectionObserver((entries) => {
