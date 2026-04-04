@@ -264,9 +264,11 @@
             transition: background-color 0.2s ease, transform 0.2s ease;
             margin-bottom: 1rem;
         }
-        .cv-button:hover {
-            background-color: #ff6b6b;
-            transform: translateY(-2px);
+        .cv-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
         .social {
             display: flex;
@@ -383,7 +385,10 @@
     <section id="contact" class="section">
         <h2 data-key="contact.heading">Contact</h2>
         <p><a href="mailto:j.kaczor06@gmail.com"><span data-key="contact.email">j.kaczor06@gmail.com</span></a></p>
-        <a href="JakubKaczor_CV.pdf" download class="cv-button" data-key="contact.cv">Download CV</a>
+        <div class="cv-buttons">
+            <a href="JakubKaczor_CV.pdf" download class="cv-button" data-key="contact.cv_pl">Pobierz CV (PL)</a>
+            <a href="JakubKaczor_Resume.pdf" download class="cv-button" data-key="contact.cv_en">Download CV (EN)</a>
+        </div>
         <div class="social">
             <a href="https://github.com/jkaczor6" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -468,7 +473,8 @@
                 contact: {
                     heading: "Contact",
                     email: "j.kaczor06@gmail.com",
-                    cv: "Download CV",
+                    cv_pl: "Pobierz CV (PL)",
+                    cv_en: "Download CV (EN)",
                     social: {
                         github: "GitHub",
                         twitter: "Twitter",
@@ -532,7 +538,8 @@
                 contact: {
                     heading: "Kontakt",
                     email: "j.kaczor06@gmail.com",
-                    cv: "Pobierz CV",
+                    cv_pl: "Pobierz CV (PL)",
+                    cv_en: "Download CV (EN)",
                     social: {
                         github: "GitHub",
                         twitter: "Twitter",
