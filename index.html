@@ -179,6 +179,7 @@
             background-color: #ffa500;
             color: #ffffff;
             padding: 0.25rem 0.5rem;
+			width: 120px;
             font-size: 0.8rem;
             border-radius: 4px;
             margin-left: 0.5rem;
@@ -367,6 +368,8 @@
         <div class="about-container">
             <div class="bio">
                 <p data-key="about.bio">I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.</p>
+				<br/>
+				<p style="font-weight:700" data-key="about.important">Im currently working on an AI/enemy systems project in a team setting.</p>
             </div>
             <div class="skills">
                 <h3 data-key="about.skills.heading">Skills</h3>
@@ -451,12 +454,20 @@
                             tags: ["UE5", "C++", "Puzzle", "Multiplayer", "Beans", "Co-op"],
                             image: "splitbean.png",
                             url: "https://github.com/jkaczor6/SplitBean"
+                        },
+                        {
+                            title: "The Bloodline Remains",
+                            description: "3D story-based Zombie survival horror.",
+                            tags: ["UE5", "C++", "Zombie", "Horror", "Survival", "Story-Based"],
+                            image: "tbr.png",
+							badge: "Work In Progress"
                         }
                     ]
                 },
                 about: {
                     heading: "About Me",
                     bio: "I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.",
+					important: "Im currently working on an AI/enemy systems project in a team setting.",
                     skills: {
                         heading: "Skills",
                         list: {
@@ -465,7 +476,8 @@
                             "Blueprints": 70,
                             "Game Design": 75,
                             "3D Modeling": 50,
-                            "Level Design": 75
+                            "Level Design": 75,
+							"AI": 70
                         }
                     }
                 },
@@ -515,12 +527,20 @@
                             tags: ["UE5", "C++", "Zagadki", "Wieloosobowy", "Fasole", "Kooperacja"],
                             image: "splitbean.png",
                             url: "https://github.com/jkaczor6/SplitBean"
+                        },
+                        {
+                            title: "The Bloodline Remains",
+                            description: "Fabularna gra 3D o tematyce zombie, przetrwania i horroru.",
+                            tags: ["UE5", "C++", "Zombie", "Horror", "Przetrwanie", "Fabuła"],
+                            image: "tbr.png",
+							badge: "W Trakcie Pracy"
                         }
                     ]
                 },
                 about: {
                     heading: "O Mnie",
                     bio: "Tworzę immersyjne doświadczenia gamingowe używając Unreal Engine 5 (C++/Blueprint). Ciągle rozwijam swoje umiejętności poprzez projekty osobiste, zadania szkolne i samodzielną naukę. Napędza mnie zarówno strona techniczna jak i kreatywna rozwoju gier — od architektury solidnych systemów gry do projektowania angażujących mechanik rozgrywki. Aktywnie uczestniczę w kursach online i śledzę najnowsze trendy branżowe. Moja pasja leży w tworzeniu przekonujących światów gier i prototypowaniu różnorodnych gatunków i stylów wizualnych. Jako że kończę szkołę średnią, jestem chętny do rozwoju jako deweloper i przyczynienia się do profesjonalnych projektów rozwoju gier, które przesuwają granice kreatywności.",
+					important: "Obecnie pracuję zespołowo nad projektem dotyczącym sztucznej inteligencji/systemów wroga.",
                     skills: {
                         heading: "Umiejętności",
                         list: {
@@ -529,7 +549,8 @@
                             "Blueprints": 70,
                             "Projektowanie Gier": 75,
                             "Modelowanie 3D": 50,
-                            "Projektowanie Poziomów": 75
+                            "Projektowanie Poziomów": 75,
+							"AI": 70
                         }
                     }
                 },
@@ -569,7 +590,7 @@
                 card.className = 'project-card';
                 card.innerHTML = `
                     <img src="${project.image}" alt="${project.title}" loading="lazy">
-                    <h3>${project.title}${project.badge ? ` <span class="badge">${project.badge}</span>` : ''}</h3>
+                    <h3>${project.title}${project.badge ? ` <p class="badge">${project.badge}</p>` : ''}</h3>
                     <p>${project.description}</p>
                     <div class="tags">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
