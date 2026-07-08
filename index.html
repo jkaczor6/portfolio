@@ -1,648 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Jakub Kaczor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="icon" href="icon.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(26, 26, 26, 0.9);
-            backdrop-filter: blur(8px);
-            z-index: 10;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #e74c3c;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        nav a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        nav a:hover {
-            color: #ff6b6b;
-            border-bottom: 2px solid #e74c3c;
-        }
-        .lang-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-left: 1rem;
-        }
-        .lang-btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        .lang-btn.active {
-            color: #e74c3c;
-        }
-        .lang-btn:hover {
-            color: #ff6b6b;
-        }
-        .section {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #hero {
-            flex-direction: row;
-            text-align: right;
-        }
-        .hero-container {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            max-width: 1200px;
-            width: 100%;
-        }
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-        .hero-text p {
-            color: #cccccc;
-            font-size: 1.2rem;
-        }
-        .hero-image img {
-            width: 300px;
-            height: auto;
-            border: 2px solid #e74c3c;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
-        }
-        #projects h2,
-        #about h2,
-        #contact h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            width: 100%;
-        }
-        .project-card {
-            background-color: #2c2c2c;
-            border: 2px solid #e74c3c;
-            border-radius: 8px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
-        }
-        .project-card:hover {
-            box-shadow: 0 8px 16px rgba(231, 76, 60, 0.5);
-            transform: translateY(-5px);
-        }
-        .project-card img {
-            width: 100%;
-            height: auto;
-        }
-        .project-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin: 1rem 0 0.5rem;
-        }
-        .project-card p {
-            color: #cccccc;
-            margin-bottom: 1rem;
-        }
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .tag {
-            background-color: #e74c3c;
-            color: #ffffff;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.8rem;
-            border-radius: 4px;
-            border: none;
-        }
-        .badge {
-            background-color: #ffa500;
-            color: #ffffff;
-            padding: 0.25rem 0.5rem;
-			width: 120px;
-            font-size: 0.8rem;
-            border-radius: 4px;
-            margin-left: 0.5rem;
-        }
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            width: 100%;
-        }
-        .bio p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        .skills h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .skills ul {
-            list-style: none;
-            padding: 0;
-        }
-        .skills li {
-            border-left: 3px solid #e74c3c;
-            padding-left: 1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .progress {
-            width: 100px;
-            height: 8px;
-            background-color: #333;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-left: 1rem;
-            position: relative;
-        }
-        .progress::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: repeating-linear-gradient(to right, #666 0px, #666 1px, transparent 1px, transparent 10px);
-            pointer-events: none;
-            z-index: 2;
-            border-radius: 4px;
-        }
-        .bar {
-            height: 100%;
-            background-color: #e74c3c;
-            border-radius: 4px;
-            transition: width 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-        #contact {
-            text-align: center;
-        }
-        #contact h2 {
-            text-align: center;
-        }
-        #contact p {
-            margin-bottom: 1rem;
-        }
-        #contact a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .cv-button {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            margin-bottom: 1rem;
-        }
-        .cv-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        .social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .social a {
-            color: #cccccc;
-            transition: color 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-        .social a:hover {
-            color: #ff6b6b;
-        }
-        .social svg {
-            width: 24px;
-            height: 24px;
-        }
-        .separator {
-            height: 4px;
-            background: linear-gradient(to right, #e74c3c, #ff6b6b, #e74c3c);
-            margin: 2rem 0;
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        @media (max-width: 768px) {
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-            .hero-image img {
-                width: 250px;
-            }
-            .nav-container {
-                padding: 1rem;
-            }
-            nav ul {
-                gap: 1rem;
-            }
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-            #projects h2,
-            #about h2,
-            #contact h2 {
-                text-align: center;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-	<!-- Cloudflare Web Analytics -->
-	<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c18e3a8318b549cfb29e25c573e2d18f"}'></script>
-	<!-- End Cloudflare Web Analytics -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jakub Kaczor - Unreal Engine Developer</title>
+  <meta name="description" content="Jakub Kaczor builds gameplay systems in Unreal Engine 5 with C++. Portfolio of shipped prototypes - open to junior roles and internships.">
+  <link rel="icon" href="icon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c18e3a8318b549cfb29e25c573e2d18f"}'></script>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="logo">J.K.</div>
-            <ul>
-                <li><a href="#projects" data-key="nav.projects">Projects</a></li>
-                <li><a href="#about" data-key="nav.about">About</a></li>
-                <li><a href="#contact" data-key="nav.contact">Contact</a></li>
-            </ul>
-            <div class="lang-toggle">
-                <button id="lang-pl" class="lang-btn">PL</button> | <button id="lang-en" class="lang-btn">ENG</button>
-            </div>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo" id="site-logo">JK</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#work" data-label="navWork">Work</a></li>
+          <li><a href="#about" data-label="navAbout">About</a></li>
+          <li><a href="#contact" class="nav-cta" data-label="navContact">Hire Me</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button id="lang-en" class="lang-btn" aria-label="English">EN</button>
+          <button id="lang-pl" class="lang-btn" aria-label="Polski">PL</button>
         </div>
-    </nav>
-    <section id="hero" class="section">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1 data-key="hero.name">Jakub Kaczor</h1>
-                <p data-key="hero.role">Game Developer</p>
-            </div>
-            <div class="hero-image">
-                <img src="photo.jpg" alt="Jakub Kaczor">
-            </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-layout">
+        <div class="hero-content reveal">
+          <p class="hero-availability" id="hero-availability"></p>
+          <h1 id="hero-headline"></h1>
+          <p class="hero-tagline" id="hero-tagline"></p>
+          <p class="hero-role"><span id="hero-name"></span> — <span id="hero-role"></span></p>
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary" data-label="heroCtaWork">See my work</a>
+            <a href="#contact" class="btn btn-outline" data-label="heroCtaContact">Get in touch</a>
+          </div>
+          <div class="stats" id="stats-row"></div>
         </div>
+        <div class="hero-visual reveal">
+          <div class="photo-frame">
+            <img id="hero-photo" src="images/photo.jpg" alt="Jakub Kaczor">
+          </div>
+        </div>
+      </div>
     </section>
-    <div class="separator"></div>
-    <section id="projects" class="section">
-        <h2 data-key="projects.heading">Projects</h2>
-        <div class="projects-grid" id="projects-grid">
-            <!-- Projects will be populated by JS -->
+
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-intro reveal">
+          <span class="section-label" data-label="sectionWork">Selected Work</span>
+          <p class="section-sub" data-label="sectionWorkSub"></p>
         </div>
+        <div id="featured-project" class="reveal"></div>
+        <div id="projects-list" class="projects-list"></div>
+      </div>
     </section>
-    <div class="separator"></div>
+
+    <section id="capabilities" class="section section-alt">
+      <div class="container">
+        <div class="section-intro reveal">
+          <span class="section-label" data-label="sectionCapabilities">What I Bring</span>
+        </div>
+        <div class="capabilities-grid" id="capabilities-grid"></div>
+        <div class="skills-cloud reveal" id="skills-cloud"></div>
+      </div>
+    </section>
+
     <section id="about" class="section">
-        <div class="about-container">
-            <div class="bio">
-                <p data-key="about.bio">I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.</p>
-				<br/>
-				<p style="font-weight:700" data-key="about.important">Im currently working on an AI/enemy systems project in a team setting.</p>
-            </div>
-            <div class="skills">
-                <h3 data-key="about.skills.heading">Skills</h3>
-                <ul>
-                    <li>Unreal Engine 5 <div class="progress"><div class="bar" style="width: 80%"></div></div></li>
-                    <li>C++ <div class="progress"><div class="bar" style="width: 75%"></div></div></li>
-                    <li>Blueprints <div class="progress"><div class="bar" style="width: 70%"></div></div></li>
-                    <li>Game Design <div class="progress"><div class="bar" style="width: 75%"></div></div></li>
-                    <li>3D Modeling <div class="progress"><div class="bar" style="width: 50%"></div></div></li>
-                    <li>Level Design <div class="progress"><div class="bar" style="width: 75%"></div></div></li>
-                </ul>
-            </div>
+      <div class="container about-layout reveal">
+        <div class="about-text">
+          <span class="section-label" data-label="sectionAbout">About</span>
+          <p id="about-bio"></p>
+          <blockquote class="about-quote" id="about-looking"></blockquote>
         </div>
+      </div>
     </section>
-    <div class="separator"></div>
-    <section id="contact" class="section">
-        <h2 data-key="contact.heading">Contact</h2>
-        <p><a href="mailto:j.kaczor06@gmail.com"><span data-key="contact.email">j.kaczor06@gmail.com</span></a></p>
-        <div class="cv-buttons">
-            <a href="JakubKaczor_CV.pdf" download class="cv-button" data-key="contact.cv_pl">Pobierz CV (PL)</a>
-            <a href="JakubKaczor_Resume.pdf" download class="cv-button" data-key="contact.cv_en">Download CV (EN)</a>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-box reveal">
+        <span class="section-label" data-label="sectionContact">Let's Work Together</span>
+        <p class="contact-sub" data-label="sectionContactSub"></p>
+        <a id="contact-email" class="contact-email" href="mailto:j.kaczor06@gmail.com"></a>
+        <div class="contact-actions">
+          <a id="cv-en" href="JakubKaczor_Resume.pdf" download class="btn btn-primary" data-label="cvEn">Resume (English)</a>
+          <a id="cv-pl" href="JakubKaczor_CV.pdf" download class="btn btn-outline" data-label="cvPl">CV (Polish)</a>
         </div>
-        <div class="social">
-            <a href="https://github.com/jkaczor6" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span data-key="contact.social.github">GitHub</span>
-            </a>
-            <a href="https://twitter.com/jkaczor6" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-                <span data-key="contact.social.twitter">Twitter</span>
-            </a>
-            <a href="https://linkedin.com/in/jakubkaczor6" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                <span data-key="contact.social.linkedin">LinkedIn</span>
-            </a>
-            <a href="https://jkaczor6.itch.io" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 6h8v2H8V6zm0 4h8v2H8v-2zm0 4h4v2H8v-2zm6 0h2v2h-2v-2zm-6-8h2V4H8v2zm4 0h2V4h-2v2zM6 2h12v20H6V2zm1 1v18h10V3H7z"/>
-                </svg>
-                <span data-key="contact.social.itch">itch.io</span>
-            </a>
-        </div>
+        <div class="social-links" id="social-links"></div>
+      </div>
     </section>
-    <script>
-        const translations = {
-            en: {
-                nav: {
-                    projects: "Projects",
-                    about: "About",
-                    contact: "Contact"
-                },
-                hero: {
-                    name: "Jakub Kaczor",
-                    role: "Game Developer"
-                },
-                projects: {
-                    heading: "Projects",
-                    items: [
-                        {
-                            title: "Platform Farmer",
-                            description: "Cozy 2D platformer with farming elements.",
-                            tags: ["UE5", "C++", "Platformer", "Farming"],
-                            image: "platformfarmer.png",
-                            url: "https://github.com/jkaczor6/PlatformFarmer"
-                        },
-                        {
-                            title: "Split-Bean",
-                            description: "3D puzzle multiplayer game with Beans.",
-                            tags: ["UE5", "C++", "Puzzle", "Multiplayer", "Beans", "Co-op"],
-                            image: "splitbean.png",
-                            url: "https://github.com/jkaczor6/SplitBean"
-                        },
-                        {
-                            title: "The Bloodline Remains",
-                            description: "3D story-based Zombie survival horror.",
-                            tags: ["UE5", "C++", "Zombie", "Horror", "Survival", "Story-Based"],
-                            image: "tbr.png"
-                        },
-                        {
-                            title: "GASCrash",
-                            description: "Combat game with full Gameplay Ability System implementation - custom ASC, Gameplay Tags in C++, Enhanced Input, ability slot system.",
-                            tags: ["UE5", "C++", "GAS", "Combat"],
-                            image: "https://placehold.co/800x450/e74c3c/ffffff?text=GAS+Crash",
-							badge: "Work In Progress",
-							url: "https://github.com/jkaczor6/GASCrash"
-                        }
-                    ]
-                },
-                about: {
-                    heading: "About Me",
-                    bio: "I create immersive gaming experiences using Unreal Engine 5 (C++/Blueprint). I'm continuously developing my skills through personal projects, school assignments, and self-directed learning. I'm driven by both the technical and creative aspects of game development—from architecting robust game systems to designing engaging gameplay mechanics. I actively pursue online courses and stay updated with the latest industry trends. My passion lies in crafting compelling game worlds and prototyping diverse genres and visual styles. As I graduate high school, I'm eager to grow as a developer and contribute to professional game development projects that push creative boundaries.",
-					important: "Im currently working on an AI/enemy systems project in a team setting.",
-                    skills: {
-                        heading: "Skills",
-                        list: {
-                            "Unreal Engine 5": 80,
-                            "C++": 75,
-                            "Blueprints": 70,
-                            "Game Design": 75,
-                            "3D Modeling": 50,
-                            "Level Design": 75,
-							"AI": 70
-                        }
-                    }
-                },
-                contact: {
-                    heading: "Contact",
-                    email: "j.kaczor06@gmail.com",
-                    cv_pl: "Pobierz CV (PL)",
-                    cv_en: "Download CV (EN)",
-                    social: {
-                        github: "GitHub",
-                        twitter: "Twitter",
-                        linkedin: "LinkedIn",
-                        itch: "itch.io"
-                    }
-                }
-            },
-            pl: {
-                nav: {
-                    projects: "Projekty",
-                    about: "O Mnie",
-                    contact: "Kontakt"
-                },
-                hero: {
-                    name: "Jakub Kaczor",
-                    role: "Game Developer"
-                },
-                projects: {
-                    heading: "Projekty",
-                    items: [
-                        {
-                            title: "Platform Farmer",
-                            description: "Przytulna platformówka 2D z elementami rolnictwa.",
-                            tags: ["UE5", "C++", "Platformer", "Rolnictwo"],
-                            image: "platformfarmer.png",
-                            url: "https://github.com/jkaczor6/PlatformFarmer"
-                        },
-                        {
-                            title: "Split-Bean",
-                            description: "Gra 3D wieloosobowa z elementami zagadki i fasolami.",
-                            tags: ["UE5", "C++", "Zagadki", "Wieloosobowy", "Fasole", "Kooperacja"],
-                            image: "splitbean.png",
-                            url: "https://github.com/jkaczor6/SplitBean"
-                        },
-                        {
-                            title: "The Bloodline Remains",
-                            description: "Fabularna gra 3D o tematyce zombie, przetrwania i horroru.",
-                            tags: ["UE5", "C++", "Zombie", "Horror", "Przetrwanie", "Fabuła"],
-                            image: "tbr.png"
-                        },
-                        {
-                            title: "GASCrash",
-                            description: "Combat game z pełną implementacją Gameplay Ability System - custom ASC, Gameplay Tags w C++, Enhanced Input, system slotów na abilities.",
-                            tags: ["UE5", "C++", "GAS", "Combat"],
-                            image: "https://placehold.co/800x450/e74c3c/ffffff?text=GAS+Crash",
-							badge: "W Trakcie Pracy",
-							url: "https://github.com/jkaczor6/GASCrash"
-                        }
-                    ]
-                },
-                about: {
-                    heading: "O Mnie",
-                    bio: "Tworzę immersyjne doświadczenia gamingowe używając Unreal Engine 5 (C++/Blueprint). Ciągle rozwijam swoje umiejętności poprzez projekty osobiste, zadania szkolne i samodzielną naukę. Napędza mnie zarówno strona techniczna jak i kreatywna rozwoju gier — od architektury solidnych systemów gry do projektowania angażujących mechanik rozgrywki. Aktywnie uczestniczę w kursach online i śledzę najnowsze trendy branżowe. Moja pasja leży w tworzeniu przekonujących światów gier i prototypowaniu różnorodnych gatunków i stylów wizualnych. Jako że kończę szkołę średnią, jestem chętny do rozwoju jako deweloper i przyczynienia się do profesjonalnych projektów rozwoju gier, które przesuwają granice kreatywności.",
-					important: "Obecnie pracuję zespołowo nad projektem dotyczącym sztucznej inteligencji/systemów wroga.",
-                    skills: {
-                        heading: "Umiejętności",
-                        list: {
-                            "Unreal Engine 5": 80,
-                            "C++": 75,
-                            "Blueprints": 70,
-                            "Projektowanie Gier": 75,
-                            "Modelowanie 3D": 50,
-                            "Projektowanie Poziomów": 75,
-							"AI": 70
-                        }
-                    }
-                },
-                contact: {
-                    heading: "Kontakt",
-                    email: "j.kaczor06@gmail.com",
-                    cv_pl: "Pobierz CV (PL)",
-                    cv_en: "Download CV (EN)",
-                    social: {
-                        github: "GitHub",
-                        twitter: "Twitter",
-                        linkedin: "LinkedIn",
-                        itch: "itch.io"
-                    }
-                }
-            }
-        };
+  </main>
 
-        let currentLang = localStorage.getItem('lang') || 'en';
+  <footer class="footer">
+    <div class="container">
+      <span>&copy; <span id="footer-year"></span> Jakub Kaczor</span>
+      <span class="footer-note">Built with UE5 passion</span>
+    </div>
+  </footer>
 
-        function updateTexts() {
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.dataset.key;
-                const keys = key.split('.');
-                let value = translations[currentLang];
-                for (let k of keys) {
-                    value = value[k];
-                }
-                el.innerText = value;
-            });
-
-            // Update projects
-            const projectsGrid = document.getElementById('projects-grid');
-            projectsGrid.innerHTML = '';
-            translations[currentLang].projects.items.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-                    <img src="${project.image}" alt="${project.title}" loading="lazy">
-                    <h3>${project.title}${project.badge ? ` <p class="badge">${project.badge}</p>` : ''}</h3>
-                    <p>${project.description}</p>
-                    <div class="tags">
-                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                `;
-                card.addEventListener('click', () => window.open(project.url, '_blank'));
-                projectsGrid.appendChild(card);
-            });
-
-            // Update skills
-            const skillsUl = document.querySelector('.skills ul');
-            skillsUl.innerHTML = '';
-            Object.entries(translations[currentLang].about.skills.list).forEach(([skill, percent]) => {
-                const li = document.createElement('li');
-                li.innerHTML = `${skill} <div class="progress"><div class="bar" style="width: ${percent}%"></div></div>`;
-                skillsUl.appendChild(li);
-            });
-
-            // Update button text
-            document.getElementById('lang-pl').classList.toggle('active', currentLang === 'pl');
-            document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateTexts();
-
-            document.getElementById('lang-pl').addEventListener('click', () => {
-                currentLang = 'pl';
-                localStorage.setItem('lang', currentLang);
-                updateTexts();
-            });
-
-            document.getElementById('lang-en').addEventListener('click', () => {
-                currentLang = 'en';
-                localStorage.setItem('lang', currentLang);
-                updateTexts();
-            });
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.section').forEach(section => observer.observe(section));
-        });
-    </script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById("footer-year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
